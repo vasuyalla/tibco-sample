@@ -74,4 +74,5 @@ pipeline {
         //disableConcurrentBuilds()
         //buildDiscarder(logRotator(numToKeepStr: '25', artifactNumToKeepStr: '25'))
     //}
+  }
 }
