@@ -29,6 +29,11 @@ pipeline {
           echo "Compile & Build..."
           sh 'mvn -f Helloworld.application.parent/pom.xml clean initialize package docker:build'
         }
+        post {
+               always {
+                   // previous to version 2.0.0 you must provide parameters to this command (see below)!
+                   jiraSendBuildInfo() 
+               }
       }
       stage('Docker Push')
       {
@@ -61,6 +66,7 @@ pipeline {
         steps {
           echo "QA Test..."
         }
+          
       }
     }
     //options {
