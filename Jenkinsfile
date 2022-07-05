@@ -19,6 +19,7 @@ pipeline {
       stage('Cleanup')
       {
         steps {
+          jiraComment body: 'This comment was sent from Jenkins', issueKey: 'issue-1'
           echo "Cleaning it up..."
           echo currentBuild.projectName
         }
@@ -69,4 +70,3 @@ pipeline {
         //buildDiscarder(logRotator(numToKeepStr: '25', artifactNumToKeepStr: '25'))
     //}
 }
-      
