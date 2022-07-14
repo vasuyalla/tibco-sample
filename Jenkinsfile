@@ -30,6 +30,11 @@ pipeline {
           echo "Compile & Build..."
           sh 'mvn -f Helloworld.application.parent/pom.xml clean initialize package docker:build'
         }
+          post {
+                 always {
+                     jiraSendBuildInfo site: 'devopstesting.atlassian.net', branch: 'master'
+                 }
+             }
       }
       stage('Docker Push')
       {
@@ -46,6 +51,11 @@ pipeline {
             docker push $ECR_URL:$ECR_ENV_DEV
           '''
         }
+          post {
+                 always {
+           	     jiraSendDeploymentInfo environmentId: 'dev', environmentName: 'dev', environmentType: 'Development'
+                 }
+             }
       }
       stage('Container Restart')
       {
