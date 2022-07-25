@@ -19,7 +19,7 @@ pipeline {
       stage('Cleanup')
       {
         steps {
-          jiraComment body: 'This comment was sent from Jenkins', issueKey: 'issue-1'
+          jiraComment body: 'This comment was sent from Jenkins', issueKey: 'TEST-2'
           echo "Cleaning it up..."
           echo currentBuild.projectName
         }
