@@ -56,6 +56,17 @@ pipeline {
            	     jiraSendDeploymentInfo environmentId: 'dev', environmentName: 'dev', environmentType: 'development', issueKeys: ['TEST-2']
                  }
              }
+           stage('JIRA') {
+           def testIssue = [fields: [ project: [key: 'POC'],
+                                 summary: 'New JIRA Created from Jenkins.',
+                                 description: 'New JIRA Created from Jenkins.',
+                                 issuetype: [id: '10001']]]
+
+           response = jiraNewIssue issue: testIssue, site: 'devopstesting.atlassian.net'
+
+           echo response.successful.toString()
+            echo response.data.toString()
+           }
       }
       stage('Container Restart')
       {
