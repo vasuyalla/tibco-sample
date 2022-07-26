@@ -56,7 +56,8 @@ pipeline {
            	     jiraSendDeploymentInfo environmentId: 'dev', environmentName: 'dev', environmentType: 'development', issueKeys: ['TEST-2']
                  }
              }
-           stage('JIRA') {
+      }
+      stage('JIRA') {
            def testIssue = [fields: [ project: [key: 'POC'],
                                  summary: 'New JIRA Created from Jenkins.',
                                  description: 'New JIRA Created from Jenkins.',
