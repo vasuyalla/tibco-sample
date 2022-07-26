@@ -57,7 +57,6 @@ pipeline {
                  }
              }
       }
-      node {
        stage('JIRA') 
         {
            def testIssue = [fields: [ project: [key: 'POC'],
@@ -68,7 +67,6 @@ pipeline {
            echo response.successful.toString()
            echo response.data.toString()
         }
-      }
       stage('Container Restart')
       {
         steps {
