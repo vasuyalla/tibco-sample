@@ -57,9 +57,9 @@ pipeline {
                  }
              }
       }
-      stage('JIRA') 
-      {
-           steps {
+      node {
+       stage('JIRA') 
+        {
            def testIssue = [fields: [ project: [key: 'POC'],
                                  summary: 'New JIRA Created from Jenkins.',
                                  description: 'New JIRA Created from Jenkins.',
@@ -67,8 +67,8 @@ pipeline {
            response = jiraNewIssue issue: testIssue, site: 'devopstesting.atlassian.net'
            echo response.successful.toString()
            echo response.data.toString()
-           }
         }
+      }
       stage('Container Restart')
       {
         steps {
