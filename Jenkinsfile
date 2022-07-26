@@ -64,11 +64,9 @@ pipeline {
                                  summary: 'New JIRA Created from Jenkins.',
                                  description: 'New JIRA Created from Jenkins.',
                                  issuetype: [id: '10001']]]
-                       }
-          steps {
            response = jiraNewIssue issue: testIssue, site: 'devopstesting.atlassian.net'
            echo response.successful.toString()
-            echo response.data.toString()
+           echo response.data.toString()
            }
         }
       stage('Container Restart')
