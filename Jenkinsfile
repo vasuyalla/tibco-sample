@@ -11,6 +11,7 @@ pipeline {
         AWS_ACCESS_KEY_ID = "$AWS_ACCESS_KEY_ID_DEV"
         ECR_URL = "548018587351.dkr.ecr.us-east-2.amazonaws.com/testing"
         ECR_ENV_DEV = "dev"
+		
         POD_PATTERN = "hello-world"
         K8S_NAMESPACE = "tibco-dev"
         DOCKER_IMAGE = "548018587351.dkr.ecr.us-east-2.amazonaws.com/testing"
@@ -57,15 +58,17 @@ pipeline {
                  }
              }
       }
-       stage('JIRA') 
-        {
-           def testIssue = [fields: [ project: [key: 'POC'],
-                                 summary: 'New JIRA Created from Jenkins.',
-                                 description: 'New JIRA Created from Jenkins.',
-                                 issuetype: [id: '10001']]]
-           response = jiraNewIssue issue: testIssue, site: 'devopstesting.atlassian.net'
-           echo response.successful.toString()
-           echo response.data.toString()
+      stage('JIRA') 
+      {
+        steps {
+		 script {
+		  echo "Creating Jira issue"
+          testIssue = [fields: [ project: [key: 'POC'],summary: 'New JIRA Created from Jenkins.',description: 'New JIRA Created from Jenkins.',issuetype: [id: '10001']]]
+          response = jiraNewIssue issue: testIssue, site: 'devopstesting.atlassian.net'
+          echo response.successful.toString()
+          echo response.data.toString()
+          }
+		  }
         }
       stage('Container Restart')
       {
