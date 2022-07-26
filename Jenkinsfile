@@ -58,6 +58,7 @@ pipeline {
              }
       }
       stage('JIRA') {
+          steps {
            def testIssue = [fields: [ project: [key: 'POC'],
                                  summary: 'New JIRA Created from Jenkins.',
                                  description: 'New JIRA Created from Jenkins.',
@@ -68,6 +69,7 @@ pipeline {
            echo response.successful.toString()
             echo response.data.toString()
            }
+        }
       stage('Container Restart')
       {
         steps {
