@@ -53,7 +53,7 @@ pipeline {
         }
           post {
                  always {
-           	     jiraSendDeploymentInfo environmentId: 'dev', environmentName: 'dev', environmentType: 'development'
+           	     jiraSendDeploymentInfo environmentId: 'dev', environmentName: 'dev', environmentType: 'development', issueKey: 'TEST-2'
                  }
              }
       }
