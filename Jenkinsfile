@@ -67,7 +67,6 @@ pipeline {
            echo response.successful.toString()
             echo response.data.toString()
            }
-      }
       stage('Container Restart')
       {
         steps {
